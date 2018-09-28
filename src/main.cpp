@@ -123,12 +123,15 @@ void publishMQTTCommand(String value) {
 }
 
 void decodeIRResult() {
+    String command = "";
     switch(results.value) {
 		case 0xFF3AC5: 
 			Serial.println("Brightness Up"); 
+            command = "FF3AC5";
 			break;
 		case 0xFFBA45: 
 			Serial.println("Brightness Down"); 
+            command = "FFBA45";
 			break;
 		case 0xFF827D: 
 			Serial.println("Pause Run"); 
@@ -262,16 +265,22 @@ void decodeIRResult() {
         // Serial.println(results.value);    
 	}
 	
+    // If We've decoded correctly now publish this to the MQTT Topic
+    if (command != "") {
+        publishMQTTCommand(command);
+    }
+    
 
 	delay(1000); // Do not get immediate repeat
 }
 
 void decodeIR() {
-    // have we received an IR signal?
+    // Have we received an IR signal?
     if (irrecv.decode(&results)) {
-        //decodeIR();
+        // We got results so now decode that input
+        decodeIRResult();
 
-        // receive the next value
+        // Receive the next value
         irrecv.resume(); 
     }
 }
