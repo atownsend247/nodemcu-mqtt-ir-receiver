@@ -135,143 +135,185 @@ void decodeIRResult() {
 			break;
 		case 0xFF827D: 
 			Serial.println("Pause Run"); 
+            command = "FF827D";
 			break;
 		case 0xFF02FD: 
 			Serial.println("Power"); 
+            command = "FF02FD";
 			break;
         case 0xFF1AE5: 
             Serial.println("Red"); 
+            command = "FF1AE5";
             break;
         case 0xFF9A65: 
             Serial.println("Green"); 
+            command = "FF9A65";
             break;
         case 0xFFA25D: 
             Serial.println("Blue"); 
+            command = "FFA25D";
             break;
         case 0xFF22DD: 
             Serial.println("White"); 
+            command = "FF22DD";
             break;
         case 0xFF2AD5: 
             Serial.println("A1"); 
+            command = "FF2AD5";
             break;
         case 0xFFAA55: 
             Serial.println("B1"); 
+            command = "FFAA55";
             break;
         case 0xFF926D: 
             Serial.println("C1"); 
+            command = "FF926D";
             break;
         case 0xFF12ED: 
             Serial.println("D1"); 
+            command = "FF12ED";
             break;
         case 0xFF0AF5: 
             Serial.println("A2"); 
+            command = "FF0AF5";
             break;
         case 0xFF8A75: 
             Serial.println("B2"); 
+            command = "FF8A75";
             break;
         case 0xFFB24D: 
             Serial.println("C2"); 
+            command = "FFB24D";
             break;
         case 0xFF32CD: 
             Serial.println("D2"); 
+            command = "FF32CD";
             break;
         case 0xFF38C7: 
             Serial.println("A3"); 
+            command = "FF38C7";
             break;
         case 0xFFB847: 
             Serial.println("B3"); 
+            command = "FFB847";
             break;
         case 0xFF7887: 
             Serial.println("C3"); 
+            command = "FF7887";
             break;
         case 0xFFF807: 
             Serial.println("D3"); 
+            command = "FFF807";
             break;
         case 0xFF18E7: 
             Serial.println("A4"); 
+            command = "FF18E7";
             break;
         case 0xFF9867: 
             Serial.println("B4"); 
+            command = "FF9867";
             break;
         case 0xFF58A7: 
             Serial.println("C4"); 
+            command = "FF58A7";
             break;
         case 0xFFD827: 
             Serial.println("D4"); 
+            command = "FFD827";
             break;
         case 0xFFE817: 
             Serial.println("Quick"); 
+            command = "FFE817";
             break;
         case 0xFFC837: 
             Serial.println("Slow"); 
+            command = "FFC837";
             break;
         case 0xFF28D7: 
             Serial.println("Red Up"); 
+            command = "FF28D7";
             break;
         case 0xFFA857: 
             Serial.println("Green Up"); 
+            command = "FFA857";
             break;
         case 0xFF6897: 
             Serial.println("Blue Up"); 
+            command = "FF6897";
             break;
         case 0xFF08F7: 
             Serial.println("Red Down"); 
+            command = "FF08F7";
             break;
         case 0xFF8877: 
             Serial.println("Green Down"); 
+            command = "FF8877";
             break;
         case 0xFF48B7: 
             Serial.println("Blue Down"); 
+            command = "FF48B7";
             break;
         case 0xFF30CF: 
             Serial.println("DIY1"); 
+            command = "FF30CF";
             break;
         case 0xFFB04F: 
             Serial.println("DIY2"); 
+            command = "FFB04F";
             break;
         case 0xFF708F: 
             Serial.println("DIY3"); 
+            command = "FF708F";
             break;
         case 0xFF10EF: 
             Serial.println("DIY4"); 
+            command = "FF10EF";
             break;
         case 0xFF906F: 
             Serial.println("DIY5"); 
+            command = "FF906F";
             break;
         case 0xFF50AF: 
             Serial.println("DIY6"); 
+            command = "FF50AF";
             break;
         case 0xFFF00F: 
             Serial.println("Auto"); 
+            command = "FFF00F";
             break;
         case 0xFFD02F: 
             Serial.println("Flash"); 
+            command = "FFD02F";
             break;
         case 0xFF20DF: 
             Serial.println("Jump3"); 
+            command = "FF20DF";
             break;
         case 0xFFA05F: 
             Serial.println("Jump7"); 
+            command = "FFA05F";
             break;
         case 0xFF609F: 
             Serial.println("Fade3"); 
+            command = "FF609F";
             break;
         case 0xFFE01F: 
             Serial.println("Fade7"); 
+            command = "FFE01F";
             break;
         default:
-        // Decode Infrared Code
-        Serial.println("Decoded Button");
-        // Serial.println(results.value);    
+            // Decode Infrared Code
+            Serial.println("Decoded Button");
+            // Serial.println(results.value);    
 	}
 	
     // If We've decoded correctly now publish this to the MQTT Topic
     if (command != "") {
         publishMQTTCommand(command);
     }
-    
 
-	delay(1000); // Do not get immediate repeat
+    // Do not get immediate repeat
+	delay(1000); 
 }
 
 void decodeIR() {
